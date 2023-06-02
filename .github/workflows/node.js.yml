@@ -34,3 +34,12 @@ jobs:
       run: npm run build --if-present
     # - run: npm test
 
+    - name: Copy a folder to s3
+      uses: prewk/s3-cp-action@v2
+      with:
+        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
+        source: './dist'
+        dest: s3://${BUCKET_NAME}
+        flags: --recursive
+
