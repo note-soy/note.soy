@@ -40,6 +40,6 @@ jobs:
         aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
         source: './dist'
-        dest: s3://${BUCKET_NAME}
+        dest: s3://${{ secrets.BUCKET_NAME }}
         flags: --recursive
 
