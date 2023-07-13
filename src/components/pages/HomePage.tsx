@@ -1,6 +1,5 @@
 import {Box, Form, Header, Image, Page, PageContent, PageHeader, TextInput} from "grommet";
-import React, {BaseSyntheticEvent, SyntheticEvent, useCallback} from "react";
-import {DefaultNav} from "../DefaultNav";
+import React, {useCallback} from "react";
 import {MenuPage} from "../MenuPage";
 import {Soyjak} from "../../Soyjak";
 import {useNavigate} from "react-router-dom";
@@ -24,6 +23,7 @@ export const HomePage = () => {
                 title={"note.soy"}
             />
             <PageContent>
+                {/*TODO shit's fucked on dark mode */}
                 <Soyjak/>
                 <Box style={{
                     position: "relative",

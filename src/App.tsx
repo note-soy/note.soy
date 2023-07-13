@@ -54,7 +54,7 @@ const myTheme: ThemeType = {
 export const App = () => {
 
     return <Grommet theme={myTheme}>
-        <Main>
+        <Main width={{max: '99vw'}}>
             <Router />
         </Main>
     </Grommet>
