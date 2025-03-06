@@ -41,5 +41,5 @@ jobs:
         aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
         source: './dist'
         dest: s3://${{ secrets.BUCKET_NAME }}
-        flags: --recursive
+        flags: --recursive --acl public-read
 
