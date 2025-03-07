@@ -1,9 +1,10 @@
 import React, {FC, useCallback, useEffect, useState} from "react";
-import {Box, Heading, Page, PageContent, PageHeader, TextArea} from "grommet";
+import {Box, Heading, Page, PageContent} from "grommet";
 import {NavLink, useParams} from "react-router-dom";
 import {Soyjak} from "../../Soyjak";
 import {getNote, saveNote} from "../../api";
 import debounce from 'lodash/debounce';
+import { MarkdownEditor } from "../../components/MarkdownEditor";
 
 export const EditorPage: FC = () => {
     const { id } = useParams();
@@ -37,8 +38,7 @@ export const EditorPage: FC = () => {
     }, [id]);
 
     // Handle content changes
-    const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        const newValue = event.target.value;
+    const handleChange = (newValue: string) => {
         setValue(newValue);
         
         if (id) {
@@ -71,12 +71,9 @@ export const EditorPage: FC = () => {
                 height={'xxlarge'}
                 pad={"medium"}
             >
-                <TextArea
-                    fill
+                <MarkdownEditor
                     value={value}
                     onChange={handleChange}
-                    resize={false}
-                    plain
                 />
             </Box>
         </PageContent>
