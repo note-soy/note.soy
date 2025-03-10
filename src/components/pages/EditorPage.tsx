@@ -5,6 +5,7 @@ import {Soyjak} from "../../Soyjak";
 import {getNote, saveNote} from "../../api";
 import debounce from 'lodash/debounce';
 import { MarkdownEditor } from "../../components/MarkdownEditor";
+import { ThemeToggle } from '../ThemeToggle';
 
 export const EditorPage: FC = () => {
     const { id } = useParams();
@@ -48,19 +49,28 @@ export const EditorPage: FC = () => {
 
     return <Page height={'99vh'} width={{max: '99vw'}}>
         <header>
-            <Box direction={'row'} pad={{left: "medium"}} gap={"small"}>
-                <Box width={'xxsmall'}>
-                    <NavLink to={'/'}>
-                        <Soyjak/>
-                    </NavLink>
-                </Box>
-                <Heading level={3} margin={'small'}>{id}</Heading>
-                {isSaving && <Box margin={'small'}>Saving...</Box>}
-                {lastSaved && !isSaving && (
-                    <Box margin={'small'}>
-                        Last saved: {lastSaved.toLocaleTimeString()}
+            <Box 
+                direction={'row'} 
+                pad={{left: "medium"}} 
+                align="center"
+                justify="between"
+                width="100%"
+            >
+                <Box direction="row" gap="small" align="center">
+                    <Box width={'xxsmall'}>
+                        <NavLink to={'/'}>
+                            <Soyjak/>
+                        </NavLink>
                     </Box>
-                )}
+                    <Heading level={3} margin={'small'}>{id}</Heading>
+                    {isSaving && <Box margin={'small'}>Saving...</Box>}
+                    {lastSaved && !isSaving && (
+                        <Box margin={'small'}>
+                            Last saved: {lastSaved.toLocaleTimeString()}
+                        </Box>
+                    )}
+                </Box>
+                <ThemeToggle />
             </Box>
         </header>
         <PageContent>
@@ -70,6 +80,8 @@ export const EditorPage: FC = () => {
                 width={'99vw'}
                 height={'xxlarge'}
                 pad={"medium"}
+                overflow="hidden"
+                
             >
                 <MarkdownEditor
                     value={value}
